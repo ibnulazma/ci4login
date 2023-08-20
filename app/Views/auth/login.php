@@ -3,10 +3,8 @@
 
 
 <div class="container">
-
     <!-- Outer Row -->
     <div class="row justify-content-center">
-
         <div class="col-md-6">
 
             <div class="card o-hidden border-0 shadow-lg my-5">
@@ -18,12 +16,17 @@
                                 <div class="text-center">
                                     <h1 class="h4 text-gray-900 mb-4"><?= lang('Auth.loginTitle') ?></h1>
                                 </div>
+                                <?= view('Myth\Auth\Views\_message_block') ?>
+
                                 <form action="<?= url_to('login') ?>" method="post" class="user">
                                     <?= csrf_field() ?>
 
                                     <?php if ($config->validFields === ['email']) : ?>
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user<?php if (session('errors.login')) : ?>is-invalid<?php endif ?> " id="exampleInputEmail" aria-describedby="emailHelp" placeholder="<?= lang('Auth.email') ?>">
+                                            <input type="email" class="form-control form-control-user <?php if (session('errors.login')) : ?>is-invalid<?php endif ?> " name="login" placeholder="<?= lang('Auth.email') ?>">
+                                            <div class="invalid-feedback">
+                                                <?= session('errors.login') ?>
+                                            </div>
                                         </div>
                                     <?php else : ?>
 
